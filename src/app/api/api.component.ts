@@ -9,6 +9,8 @@ import {
 } from '@shared/paged-listing-component-base';
 import { Observable } from 'rxjs';
 import { AuthService } from '@shared/auth/SimpAPIAuth/auth.service'; // Import AuthService
+import { CreateTransporterDialogComponent } from './create-transporter/create-transporter-dialog.component';
+import { EditTransporterDialogComponent } from './edit-transporter/edit-transporter-dialog.component';
 
 class PagedTransportersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -25,6 +27,9 @@ interface Transporter {
   animations: [appModuleAnimation()]
 })
 export class ApiComponent extends PagedListingComponentBase<Transporter> implements OnInit {
+  protected delete(entity: Transporter): void {
+    throw new Error('Method not implemented.');
+  }
   transporters: Transporter[] = [];
   keyword = '';
   isActive: boolean | null;
@@ -89,14 +94,14 @@ export class ApiComponent extends PagedListingComponentBase<Transporter> impleme
   }
 
   createTransporter(): void {
-    // Implement create transporter logic here
+   this.showCreateOrEditTransporterDialog();
   }
 
   editTransporter(transporter: Transporter): void {
-    // Implement edit transporter logic here
+    this.showCreateOrEditTransporterDialog(transporter.id);
   }
 
-  delete(transporter: Transporter): void {
+  deleteTransporter(transporter: Transporter): void {
     abp.message.confirm(
       this.l('TransporterDeleteWarningMessage', transporter.name),
       undefined,
@@ -114,6 +119,32 @@ export class ApiComponent extends PagedListingComponentBase<Transporter> impleme
         }
       }
     );
+  }
+
+  showCreateOrEditTransporterDialog(id?: number): void {
+    let createOrEditTransporterDialog: BsModalRef;
+    if (!id) {
+      const initialState = {
+        title: this.l('CreateTransporter')
+      };
+      createOrEditTransporterDialog = this._modalService.show(
+        CreateTransporterDialogComponent,
+        { initialState, class: 'modal-lg' }
+      );
+    } else {
+      const initialState = {
+        title: this.l('EditTransporter'),
+        id: id
+      };
+      createOrEditTransporterDialog = this._modalService.show(
+        EditTransporterDialogComponent,
+        { initialState, class: 'modal-lg' }
+      );
+    }
+
+    createOrEditTransporterDialog.content.onSave.subscribe(() => {
+      this.refresh();
+    });
   }
 
   clearFilters(): void {

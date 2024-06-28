@@ -40,11 +40,18 @@ import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { ApiComponent } from './api/api.component';
 
+//transporters
+import { CreateTransporterDialogComponent } from '@app/api/create-transporter/create-transporter-dialog.component';
+import { EditTransporterDialogComponent } from '@app/api/edit-transporter/edit-transporter-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
+    //transporters
+    CreateTransporterDialogComponent,
+    EditTransporterDialogComponent,
     ApiComponent,
     // tenants
     TenantsComponent,

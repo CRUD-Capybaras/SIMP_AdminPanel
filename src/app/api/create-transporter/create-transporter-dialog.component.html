@@ -1,0 +1,41 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createTransporterForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'Dodaj nowego przewoźnika' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "Nazwa przewoźnika" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          minlength="2"
+          maxlength="128"
+          required
+          [(ngModel)]="transporter.name"
+          #nameModel="ngModel"
+          #nameEl
+        />
+        <abp-validation-summary
+          [control]="nameModel"
+          [controlEl]="nameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createTransporterForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
