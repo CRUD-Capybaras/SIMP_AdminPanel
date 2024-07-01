@@ -110,7 +110,7 @@ export class ApiComponent extends PagedListingComponentBase<Transporter> impleme
           const headers = new HttpHeaders({
             'Authorization': `Bearer ${this._authService.getAccessToken()}`
           });
-          this._httpClient.delete(`${this.apiUrl}/${transporter.id}`, { headers }).pipe(
+          this._httpClient.delete(`${this.apiUrl}${transporter.id}/`, { headers }).pipe(
             finalize(() => {
               abp.notify.success(this.l('SuccessfullyDeleted'));
               this.refresh();
