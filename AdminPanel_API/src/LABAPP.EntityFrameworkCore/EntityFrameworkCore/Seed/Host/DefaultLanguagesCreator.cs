@@ -18,7 +18,6 @@ namespace LABAPP.EntityFrameworkCore.Seed.Host
             return new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),
-                new ApplicationLanguage(tenantId, "pl", "Polski", "famfamfam-flags pl"),
                 new ApplicationLanguage(tenantId, "ar", "العربية", "famfamfam-flags sa"),
                 new ApplicationLanguage(tenantId, "de", "German", "famfamfam-flags de"),
                 new ApplicationLanguage(tenantId, "it", "Italiano", "famfamfam-flags it"),
