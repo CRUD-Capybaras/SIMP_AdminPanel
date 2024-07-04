@@ -8,12 +8,12 @@
   <div class="modal-body">
     <form #editForm="ngForm" (ngSubmit)="save()">
       <div class="form-group">
-        <label for="lineName">{{ "Line Name" | localize }}</label>
+        <label for="lineName">{{ "Numer i kierunek linii" | localize }}</label>
         <input type="text" class="form-control" id="lineName" required [(ngModel)]="line.name" name="name" />
       </div>
   
       <div class="form-group">
-        <label for="carrier">{{ "Carrier" | localize }}</label>
+        <label for="carrier">{{ "Przewoźnik" | localize }}</label>
         <select class="form-control" id="carrier" required [(ngModel)]="line.carrier" name="carrier">
           <option *ngFor="let carrier of carriers" [value]="carrier.id">{{ carrier.name }}</option>
         </select>
@@ -22,10 +22,10 @@
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="saving">
           <i *ngIf="saving" class="fa fa-spinner fa-spin"></i>
-          {{ "Save" | localize }}
+          {{ "Zapisz" | localize }}
         </button>
         <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
-          {{ "Cancel" | localize }}
+          {{ "Anuluj" | localize }}
         </button>
       </div>
     </form>

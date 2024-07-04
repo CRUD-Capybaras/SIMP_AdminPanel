@@ -47,6 +47,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(this.l('Strona główna'), '/app/home', 'fas fa-home'),
             new MenuItem(this.l('Przewoźnicy'), '/app/api', 'fas fa-truck'),
             new MenuItem(this.l('Linie przewozowe'), '/app/transporterLines', 'fas fa-route'),
+            new MenuItem(this.l('Przystanki'), '/app/stops', 'fas fa-map-marker-alt'),
             new MenuItem(
                 this.l('Roles'),
                 '/app/roles',

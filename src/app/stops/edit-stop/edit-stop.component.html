@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ "Edit Stop" | localize }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <div class="modal-body">
+    <form #editForm="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="stopName">{{ "Stop Name" | localize }}</label>
+        <input type="text" class="form-control" id="stopName" required [(ngModel)]="stop.name" name="name" />
+      </div>
+  
+      <div class="form-group">
+        <label for="latitude">{{ "Latitude" | localize }}</label>
+        <input type="number" class="form-control" id="latitude" required [(ngModel)]="stop.latitude" name="latitude" />
+      </div>
+  
+      <div class="form-group">
+        <label for="longitude">{{ "Longitude" | localize }}</label>
+        <input type="number" class="form-control" id="longitude" required [(ngModel)]="stop.longitude" name="longitude" />
+      </div>
+  
+      <div class="form-group">
+        <label for="line">{{ "Line" | localize }}</label>
+        <select class="form-control" id="line" required [(ngModel)]="stop.line" name="line">
+          <option *ngFor="let line of lines" [value]="line.id">{{ line.name }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="previousStop">{{ "Previous Stop" | localize }}</label>
+        <input type="number" class="form-control" id="previousStop" [(ngModel)]="stop.previous_stop" name="previous_stop" />
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="saving">
+          <i *ngIf="saving" class="fa fa-spinner fa-spin"></i>
+          {{ "Save" | localize }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+          {{ "Cancel" | localize }}
+        </button>
+      </div>
+    </form>
+  </div>
+  

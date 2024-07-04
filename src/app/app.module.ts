@@ -47,11 +47,19 @@ import { EditTransporterDialogComponent } from '@app/api/edit-transporter/edit-t
 import { TransporterLinesComponent } from '@app/transporterLines/transporterLines.component';
 import { CreateTransporterLinesDialogComponent } from '@app/transporterLines/create-transporter-lines/create-transporterLines-dialog.component';
 import { EditTransporterLinesDialogComponent } from '@app/transporterLines/edit-transporter-lines/edit-transporterLines-dialog.component';
+//stops
+import { StopsComponent } from '@app/stops/stops.component';
+import { CreateStopDialogComponent } from '@app/stops/create-stop/create-stop.component';
+import { EditStopDialogComponent } from '@app/stops/edit-stop/edit-stop.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
+    //stops
+    StopsComponent,
+    CreateStopDialogComponent,
+    EditStopDialogComponent,
     //transporterLines
     TransporterLinesComponent,
     CreateTransporterLinesDialogComponent,
