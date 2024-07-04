@@ -43,12 +43,19 @@ import { ApiComponent } from './api/api.component';
 //transporters
 import { CreateTransporterDialogComponent } from '@app/api/create-transporter/create-transporter-dialog.component';
 import { EditTransporterDialogComponent } from '@app/api/edit-transporter/edit-transporter-dialog.component';
-
+//transporterLines
+import { TransporterLinesComponent } from '@app/transporterLines/transporterLines.component';
+import { CreateTransporterLinesDialogComponent } from '@app/transporterLines/create-transporter-lines/create-transporterLines-dialog.component';
+import { EditTransporterLinesDialogComponent } from '@app/transporterLines/edit-transporter-lines/edit-transporterLines-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
+    //transporterLines
+    TransporterLinesComponent,
+    CreateTransporterLinesDialogComponent,
+    EditTransporterLinesDialogComponent,
     //transporters
     CreateTransporterDialogComponent,
     EditTransporterDialogComponent,

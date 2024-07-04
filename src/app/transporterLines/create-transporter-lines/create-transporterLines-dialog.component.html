@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ "Dodaj nową linie" | localize }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <div class="modal-body">
+    <form #createForm="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="lineName">{{ "Numer i kierunek linii" | localize }}</label>
+        <input type="text" class="form-control" id="lineName" required [(ngModel)]="line.name" name="name" />
+      </div>
+  
+      <div class="form-group">
+        <label for="carrier">{{ "Przewoźnik" | localize }}</label>
+        <select class="form-control" id="carrier" required [(ngModel)]="line.carrier" name="carrier">
+          <option *ngFor="let carrier of carriers" [value]="carrier.id">{{ carrier.name }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="saving">
+          <i *ngIf="saving" class="fa fa-spinner fa-spin"></i>
+          {{ "Zapisz" | localize }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+          {{ "Anuluj" | localize }}
+        </button>
+      </div>
+    </form>
+  </div>
+  
