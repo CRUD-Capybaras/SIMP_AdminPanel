@@ -7,12 +7,17 @@ namespace LABAPP.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<LABAPPDbContext> builder, string connectionString)
         {
-            builder.UseSqlite(connectionString);
+            //builder.UseSqlite(connectionString);
+            builder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
 
         public static void Configure(DbContextOptionsBuilder<LABAPPDbContext> builder, DbConnection connection)
         {
-            builder.UseSqlite(connection);
+            //builder.UseSqlite(connection);
+            builder.UseMySql(connection, ServerVersion.AutoDetect(connection.ConnectionString), options =>
+            {
+                options.EnableRetryOnFailure();
+            });
         }
     }
 }

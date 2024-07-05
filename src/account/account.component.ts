@@ -17,10 +17,17 @@ export class AccountComponent extends AppComponentBase implements OnInit {
   }
 
   showTenantChange(): boolean {
-    return !abp.multiTenancy.isEnabled;
+    return abp.multiTenancy.isEnabled;
   }
 
   ngOnInit(): void {
+    try {
+      localStorage.clear();
+      console.log('localStorage cleared');
+    }
+    catch (e) {
+      console.log(`Error clearing localStorage: ${e}`);
+    }
     this.renderer.addClass(document.body, 'login-page');
   }
 }
