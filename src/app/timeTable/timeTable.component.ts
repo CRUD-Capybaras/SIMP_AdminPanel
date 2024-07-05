@@ -155,7 +155,7 @@ export class TimeTableComponent extends PagedListingComponentBase<Timetable> imp
 
   deleteTimetable(timetable: Timetable): void {
     abp.message.confirm(
-      this.l('DeleteWarningMessage', timetable.time),
+      this.l('TimeTableDeleteWarningMessage', timetable.id),
       undefined,
       (result: boolean) => {
         if (result) {
