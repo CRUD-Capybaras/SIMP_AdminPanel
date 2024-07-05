@@ -51,11 +51,19 @@ import { EditTransporterLinesDialogComponent } from '@app/transporterLines/edit-
 import { StopsComponent } from '@app/stops/stops.component';
 import { CreateStopDialogComponent } from '@app/stops/create-stop/create-stop.component';
 import { EditStopDialogComponent } from '@app/stops/edit-stop/edit-stop.component';
+//timetable
+import { TimeTableComponent } from '@app/timeTable/timeTable.component';
+import { CreateTimetableDialogComponent } from '@app/timeTable/create-timeTable/create-timetable-dialog.component';
+import { EditTimetableDialogComponent } from '@app/timeTable/edit-timeTable/edit-timetable-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
+    //timetable
+    TimeTableComponent,
+    CreateTimetableDialogComponent,
+    EditTimetableDialogComponent,
     //stops
     StopsComponent,
     CreateStopDialogComponent,

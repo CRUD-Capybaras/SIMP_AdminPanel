@@ -1,0 +1,80 @@
+<div [@routerTransition]>
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <h1>{{ "Timetables" | localize }}</h1>
+          </div>
+          <div class="col-6 text-right">
+            <button class="btn bg-blue" (click)="createTimetable()">
+              <i class="fa fa-plus-square"></i> {{ "Dodaj nowy rozkład" | localize }}
+            </button>
+            <button class="btn bg-blue mx-2" (click)="getDataPage(1)">
+              <i class="fa fa-refresh"></i> {{ "Odśwież" | localize }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content px-2">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="isTableLoading" class="text-center">
+              <i class="fa fa-spinner fa-spin"></i> {{ "Loading..." | localize }}
+            </div>
+            <div *ngIf="!isTableLoading" class="table-responsive">
+              <table class="table table-striped table-bordered">
+                <thead class="bg-light">
+                  <tr>
+                    <th>{{ "ID" | localize}}</th>
+                    <th>{{ "Godzina odjazdu" | localize }}</th>
+                    <th>{{ "Typ dnia" | localize }}</th>
+                    <th>{{ "Przystanek" | localize }}</th>
+                    <th>{{ "Akcje" | localize }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let timetable of timetablesWithStopNames">
+                    <td>{{ timetable.id }}</td>
+                    <td>{{ timetable.time }}</td>
+                    <td>{{ timetable.day_type }}</td>
+                    <td>{{ timetable.stopName }}</td>
+                    <td>
+                      <button class="btn btn-sm btn-primary" (click)="editTimetable(timetable.id)">
+                        <i class="fa fa-edit"></i> {{ "Edytuj" | localize }}
+                        </button>
+                        <button class="btn btn-sm btn-danger mx-2" (click)="deleteTimetable(timetable)">
+                            <i class="fa fa-trash"></i> {{ "Usuń" | localize }}
+                        </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer table-card-footer bg-light border-top">
+            <div class="row">
+              <div class="col-sm-4 col-12 text-sm-left text-center">
+                <button class="btn btn-secondary" (click)="refresh()">
+                  <i class="fas fa-redo-alt"></i>
+                </button>
+              </div>
+              <div class="col-sm-4 col-12 text-center">
+                <p class="mb-0 my-2">
+                  {{ "TotalRecordsCount" | localize: totalItems }}
+                </p>
+              </div>
+              <div class="col-sm-4 col-12">
+                <div class="float-sm-right m-auto">
+                  <abp-pagination-controls id="server" (pageChange)="getDataPage($event)">
+                  </abp-pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
