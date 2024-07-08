@@ -126,7 +126,7 @@ export class TimeTableComponent extends PagedListingComponentBase<Timetable> imp
   editTimetable(timetable: Timetable): void {
     this.showCreateOrEditTimetableDialog(timetable.id);
   }
-
+  
   showCreateOrEditTimetableDialog(id?: number): void {
     let createOrEditTimetableDialog: BsModalRef;
     if (!id) {
@@ -147,11 +147,12 @@ export class TimeTableComponent extends PagedListingComponentBase<Timetable> imp
         { initialState, class: 'modal-lg' }
       );
     }
-
+  
     createOrEditTimetableDialog.content.onSave.subscribe(() => {
       this.refresh();
     });
   }
+  
 
   deleteTimetable(timetable: Timetable): void {
     abp.message.confirm(
@@ -159,14 +160,21 @@ export class TimeTableComponent extends PagedListingComponentBase<Timetable> imp
       undefined,
       (result: boolean) => {
         if (result) {
-          this._httpClient.delete(`${this.apiUrlTimetables}${timetable.id}/`).subscribe(() => {
+          const headers = new HttpHeaders({
+            'Authorization': `Bearer ${this._authService.getAccessToken()}`
+          });
+          this._httpClient.delete(`${this.apiUrlTimetables}${timetable.id}/`, { headers }).subscribe(() => {
             abp.notify.success(this.l('SuccessfullyDeleted'));
             this.refresh();
+          }, error => {
+            console.error('ERROR', error);
+            abp.notify.error(this.l('DeleteFailed'));
           });
         }
       }
     );
   }
+  
 
   clearFilters(): void {
     this.keyword = '';

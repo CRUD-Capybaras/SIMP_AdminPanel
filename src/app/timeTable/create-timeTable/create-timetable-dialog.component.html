@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ "Create Timetable" | localize }}</h4>
+    <h4 class="modal-title">{{ "Dodaj nowy rozkład" | localize }}</h4>
     <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,21 +8,21 @@
   <div class="modal-body">
     <form #createForm="ngForm" (ngSubmit)="save()">
       <div class="form-group">
-        <label for="timetableTime">{{ "Time" | localize }}</label>
+        <label for="timetableTime">{{ "Godzina odjazdu" | localize }}</label>
         <input type="time" class="form-control" id="timetableTime" required [(ngModel)]="timetable.time" name="time" />
       </div>
   
       <div class="form-group">
-        <label for="dayType">{{ "Day Type" | localize }}</label>
+        <label for="dayType">{{ "Typ dnia" | localize }}</label>
         <select class="form-control" id="dayType" required [(ngModel)]="timetable.day_type" name="day_type">
-          <option value="weekday">{{ "Weekday" | localize }}</option>
-          <option value="saturday">{{ "Saturday" | localize }}</option>
-          <option value="sunday_holiday">{{ "Sunday/Holiday" | localize }}</option>
+          <option value="weekday">{{ "Dzień powszedni" | localize }}</option>
+          <option value="saturday">{{ "Sobota" | localize }}</option>
+          <option value="sunday_holiday">{{ "Niedziela/Wakacje" | localize }}</option>
         </select>
       </div>
   
       <div class="form-group">
-        <label for="stop">{{ "Stop" | localize }}</label>
+        <label for="stop">{{ "Przystanek" | localize }}</label>
         <select class="form-control" id="stop" required [(ngModel)]="timetable.stop" name="stop">
           <option *ngFor="let stop of stops" [value]="stop.id">{{ stop.name }}</option>
         </select>
@@ -31,10 +31,10 @@
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="saving">
           <i *ngIf="saving" class="fa fa-spinner fa-spin"></i>
-          {{ "Save" | localize }}
+          {{ "Zapisz" | localize }}
         </button>
-        <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
-          {{ "Cancel" | localize }}
+        <button type="button" class="btn btn-secondary mx-2" (click)="bsModalRef.hide()">
+          {{ "Anuluj" | localize }}
         </button>
       </div>
     </form>
